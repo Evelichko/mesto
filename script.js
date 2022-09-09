@@ -6,8 +6,6 @@ let nameInput = formElement.querySelector('.popup__form-input_value_name');
 let jobInput = formElement.querySelector('.popup__form-input_value_job');
 let namer = document.querySelector('.profile__author');
 let job = document.querySelector('.profile__author-info');
-let nameValue = nameInput.value;
-let jobValue = jobInput.value;
 
 function popupOpened() {
   element.classList.add('popup_opened');
