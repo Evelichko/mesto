@@ -1,0 +1,14 @@
+.element__image {
+  max-width: 100%;
+  max-height: 282px;
+  border-radius: 10px 10px 0px 0px;
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+/* @media screen and (max-width: 700px) {
+  .element__image {
+    max-width: 100%;
+  }
+}
+
+*/
