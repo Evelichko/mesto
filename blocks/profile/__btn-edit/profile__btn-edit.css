@@ -8,7 +8,7 @@
   grid-column: 3/4;
   background-color: black;
   margin-bottom: 0;
-  background-image: url(../../../images/Button__element.png);
+  background-image: url(../../../images/Button__element.svg);
   background-repeat: no-repeat;
   background-position: center;
   margin-top: 37px;
@@ -24,10 +24,11 @@
   .profile__btn-edit {
     grid-row: 2/3;
     grid-column: 2/3;
-    max-width: 18px;
-    max-height: 18px;
-    height: 100%;
+    width: 18px;
+    height: 18px;
     margin: 35px 19px 0 0;
     padding: 0;
+    background-image: url(../../../images/Button__element320.svg);
+
   }
 }

@@ -1,7 +1,12 @@
 .header {
   max-width: 880px;
   margin: 0 auto;
-  padding: 0;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 41px;
+  border-bottom: 1px #545454 solid;
+
 }
 
 @media screen and (max-width: 320px) {
@@ -10,3 +15,28 @@
     margin: 0;
   }
 }
+
+/* .header__line {
+  max-width: 880px;
+  width: 100%;
+  display: block;
+  margin: 41px auto 0;
+  padding: 0;
+  align-self: center;
+  opacity: 0.7;
+  background-color: #545454;
+}
+
+@media screen and (max-width: 934px) {
+  .header__line {
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 605px) {
+  .header__line {
+    margin-top: 31.5px;
+    max-width: 318px;
+
+  }
+} */
