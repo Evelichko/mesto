@@ -6,8 +6,6 @@ let nameInput = formElement.querySelector('.popup__form-name');
 let jobInput = formElement.querySelector('.popup__form-job');
 let namer = document.querySelector('.profile__author');
 let job = document.querySelector('.profile__author-info');
-// let buttonSubmit = document.querySelector('.popup__btn-save');
-
 let nameValue = nameInput.value;
 let jobValue = jobInput.value;
 
@@ -27,6 +25,6 @@ function formSubmitHandler(evt) {
   job.textContent = jobValue;
 }
 formElement.addEventListener('submit', formSubmitHandler);
-// buttonSubmit.addEventListener('submit', function () {
-//   element.classList.remove('popup_opened');
-// });
+ formElement.addEventListener('submit', function () {
+ element.classList.remove('popup_opened');
+});
