@@ -20,7 +20,6 @@ buttonClose.addEventListener('click', function () {
   element.classList.remove('popup_opened');
 });
 
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
