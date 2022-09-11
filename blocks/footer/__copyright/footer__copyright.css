@@ -10,25 +10,11 @@
 
 @media screen and (max-width: 920px) {
   .footer__copyright {
-<<<<<<< HEAD
     margin-left: 19px;
     margin-right: 19px;
     max-width: 282px;
     font-size: 14px;
     line-height: 16.94px;
     margin-bottom: 36px;
-=======
-   margin-left: 19px;
-   margin-right: 19px;
-  }
-}
-
-
-@media screen and (max-width: 320px) {
-  .footer__copyright {
-    max-width: 282px;
-    font-size: 14px;
-    line-height: 16.94px;
->>>>>>> ca55f32aaa41bdea8f7c85d438c1fc93bba1c193
   }
 }
