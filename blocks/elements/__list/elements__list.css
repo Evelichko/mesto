@@ -4,8 +4,6 @@
   row-gap: 20px;
   column-gap: 17px;
   max-width: 880px;
-  margin: 51px auto 67px;
-  padding: 0;
 }
 
 @media screen and (max-width: 920px) {
@@ -19,14 +17,6 @@
   .elements__list {
     grid-template-columns: repeat(2, 1fr);
     max-width: 581px;
-    margin: 51px auto 67px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .elements__list {
-    margin-left: 19px;
-    margin-right: 19px;
   }
 }
 
@@ -34,6 +24,5 @@
   .elements__list {
     grid-template-columns: 1fr;
     max-width: 282px;
-    margin: 0 auto 48px;
   }
 }
