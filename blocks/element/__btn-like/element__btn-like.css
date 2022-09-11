@@ -9,8 +9,12 @@
   background-repeat: no-repeat;
   background-position: center;
   margin: 30px 20px 31px 0;
+<<<<<<< HEAD
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+=======
+  background-color: #fff;
+>>>>>>> ca55f32aaa41bdea8f7c85d438c1fc93bba1c193
   border: 0;
   padding: 0;
   justify-self: end;

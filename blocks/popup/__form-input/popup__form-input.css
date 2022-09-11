@@ -13,7 +13,11 @@
 }
 
 @media screen and (max-width: 520px) {
+<<<<<<< HEAD
   .popup__form-input {
+=======
+  .popup__form-job {
+>>>>>>> ca55f32aaa41bdea8f7c85d438c1fc93bba1c193
     max-width: 238px;
   }
 }

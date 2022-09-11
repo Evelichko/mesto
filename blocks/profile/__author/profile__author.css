@@ -1,8 +1,18 @@
 .profile__author {
+<<<<<<< HEAD
   max-width: 294px;
   font-weight: 500;
   font-size: 42px;
   font-style: normal;
+=======
+  max-width: auto;
+  width: 100%;
+  max-height: 39px;
+  font-weight: 500;
+  font-size: 42px;
+  font-style: normal;
+  /* font-size: calc(27px + (42 - 27) * ( (100vw - 320px) / ( 1280 - 320) )); */
+>>>>>>> ca55f32aaa41bdea8f7c85d438c1fc93bba1c193
   line-height: 48px;
   margin-bottom: 0;
   margin-top: 0;
@@ -10,9 +20,12 @@
   padding-top: 22px;
   grid-row: 1/2;
   grid-column: 2/3;
+<<<<<<< HEAD
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+=======
+>>>>>>> ca55f32aaa41bdea8f7c85d438c1fc93bba1c193
 }
 
 @media screen and (max-width: 700px) {
