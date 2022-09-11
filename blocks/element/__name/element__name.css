@@ -7,7 +7,6 @@
   max-width: 190px;
   grid-row: 2/3;
   grid-column: 1/2;
-  height: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

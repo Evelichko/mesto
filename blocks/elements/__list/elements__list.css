@@ -3,26 +3,19 @@
   grid-template-columns: repeat(3, minmax(min-content, max-content));
   row-gap: 20px;
   column-gap: 17px;
-  max-width: 880px;
-}
-
-@media screen and (max-width: 920px) {
-  .elements__list {
-    margin-left: 19px;
-    margin-right: 19px;
-  }
+  list-style: none;
+  padding: 0;
+  margin: auto;
 }
 
 @media screen and (max-width: 700px) {
   .elements__list {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 581px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .elements__list {
     grid-template-columns: 1fr;
-    max-width: 282px;
   }
 }
