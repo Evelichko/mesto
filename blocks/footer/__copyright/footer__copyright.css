@@ -10,16 +10,11 @@
 
 @media screen and (max-width: 920px) {
   .footer__copyright {
-   margin-left: 19px;
-   margin-right: 19px;
-  }
-}
-
-
-@media screen and (max-width: 320px) {
-  .footer__copyright {
+    margin-left: 19px;
+    margin-right: 19px;
     max-width: 282px;
     font-size: 14px;
     line-height: 16.94px;
+    margin-bottom: 36px;
   }
 }

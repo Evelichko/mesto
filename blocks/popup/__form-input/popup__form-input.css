@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 520px) {
-  .popup__form-job {
+  .popup__form-input {
     max-width: 238px;
   }
 }
