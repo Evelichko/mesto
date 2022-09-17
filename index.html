@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Сервис для обмена фотографиями">
-  <meta name="keywords" content="Велосипед, Шоссе, ТТ, Грэвел, Велотренировки">
+  <meta name="keywords" content="Фото, соцсети, общение, лайки">
   <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="root">
-  <div class="popup">
+  <div class="popup popup_profile">
     <div class="popup__container">
       <button class="popup__btn-close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -26,6 +26,22 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_place">
+    <div class="popup__container">
+      <button class="popup__btn-close" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="form">
+        <label>
+          <input type="text" name="name" class="popup__form-input popup__form-input_value_place" placeholder="Название" value="">
+        </label>
+        <label>
+          <input type="text" name="link" class="popup__form-input popup__form-input_value_link" placeholder="Ссылка на картинку" value="">
+        </label>
+        <button class='popup__btn-save' type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class = "popupPic"></div>
   <header class="header">
     <img class="header__logo" src="images/logo.svg" alt="Логотип сервиса">
   </header>
@@ -38,38 +54,6 @@
       <button class="profile__btn-add" type="button"></button>
     </section>
     <section class="elements">
-    <ul class="elements__list">
-      <li class="element">
-        <img class="element__image" src="images/Church__in__mountains.jpg" alt="Церковь в горах">
-        <h2 class="element__name">Карачаевск</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-      <li class="element">
-        <img class="element__image" src="images/Sunrise__and__mountains.png" alt="Рассвет в горах">
-        <h2 class="element__name">Гора Эльбрус</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-      <li class="element">
-        <img class="element__image" src="images/Mountains.png" alt="Вид на Домбай">
-        <h2 class="element__name">Домбай</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-      <li class="element">
-        <img class="element__image" src="images/Sunrise__and__mountains.png" alt="Рассвет в горах">
-        <h2 class="element__name">Гора Эльбрус</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-      <li class="element">
-        <img class="element__image" src="images/Mountains.png" alt="Вид на Домбай">
-        <h2 class="element__name">Домбай</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-      <li class="element">
-        <img class="element__image" src="images/Church__in__mountains.jpg" alt="Церковь в горах">
-        <h2 class="element__name">Карачаево-Черкессия</h2>
-        <button class="element__btn-like" type="button"></button>
-      </li>
-    </ul>
   </section>
   </main>
   <footer class="footer">
