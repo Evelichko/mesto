@@ -1,4 +1,4 @@
-.popup {
+.popupPic {
   max-width: 100vw;
   max-height: 100vh;
   position: fixed;
@@ -15,7 +15,7 @@
   transition: all 0.3s ease;
 }
 
-.popup::after {
+.popupPic::after {
   content: '';
   width: 100%;
   height: 100%;

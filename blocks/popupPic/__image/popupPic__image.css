@@ -1,0 +1,9 @@
+.popupPic__image {
+  max-width: 75vw;
+  max-height: 75vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  z-index: 4;
+}
