@@ -59,25 +59,16 @@ function openPopup(item) {
 function closePopup(item) {
   item.classList.remove('popup_opened');
 }
-function openPopupProfile() {
-  openPopup(element);
-}
-function openPopupPlace() {
-  openPopup(popupPlace);
-}
-function openPopupPicture() {
-  openPopup(popupPic);
-}
-
-buttonEdit.addEventListener('click', openPopupProfile);
-buttonAddPic.addEventListener('click', openPopupPlace);
-
 
 const closeButtons = document.querySelectorAll('.popup__btn-close');
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
+  buttonEdit.addEventListener('click', () => openPopup(element));
+  buttonAddPic.addEventListener('click', () => openPopup(popupPlace));
+
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -101,6 +92,7 @@ function createCard(item) {
     const picture = evt.target;
     popupPicImg.src = picture.src;
     popupPicDescription.textContent = picture.alt;
+    popupPicImg.alt = picture.alt;
     popupPic.classList.add('popup_opened');
   });
 
@@ -113,11 +105,11 @@ function createCard(item) {
     const button = evt.target;
     button.parentElement.remove();
   });
-  cardsList.prepend(newCard);
+return newCard;
 }
 
 initialCards.forEach(item => {
-  createCard(item);
+  cardsList.prepend(createCard(item));
 });
 
 
@@ -127,7 +119,7 @@ function handlePopupPlaceFormSubmit(evt) {
     name: placeInput.value,
     link: linkInput.value,
   };
-  createCard(values);
+  cardsList.prepend(createCard(values));
   closePopup(popupPlace);
 }
 formElementPopupPlace.addEventListener('submit', handlePopupPlaceFormSubmit);
