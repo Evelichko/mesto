@@ -20,7 +20,8 @@
           <input type="text" name="name" class="popup__form-input popup__form-input_value_name" value="Жак-Ив Кусто">
         </label>
         <label>
-          <input type="text" name="job" class="popup__form-input popup__form-input_value_job" value="Исследователь океана">
+          <input type="text" name="job" class="popup__form-input popup__form-input_value_job"
+            value="Исследователь океана">
         </label>
         <button class='popup__btn-save' type="submit">Сохранить</button>
       </form>
@@ -32,19 +33,22 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="form">
         <label>
-          <input type="text" name="name" class="popup__form-input popup__form-input_value_place" placeholder="Название" value="">
+          <input type="text" name="name" class="popup__form-input popup__form-input_value_place" placeholder="Название"
+            value="">
         </label>
         <label>
-          <input type="text" name="link" class="popup__form-input popup__form-input_value_link" placeholder="Ссылка на картинку" value="">
+          <input type="text" name="link" class="popup__form-input popup__form-input_value_link"
+            placeholder="Ссылка на картинку" value="">
         </label>
         <button class='popup__btn-save' type="submit">Сохранить</button>
       </form>
     </div>
   </div>
-  <div class = "popup popup_picture">
+  <div class="popup popup_picture">
     <div class="popup__box">
       <button class="popup__btn-close" type="button"></button>
       <img class="popup__image">
+      <p class="popup__description"></p>
     </div>
   </div>
   <header class="header">
@@ -59,7 +63,17 @@
       <button class="profile__btn-add" type="button"></button>
     </section>
     <section class="elements">
-  </section>
+      <ul class="elements__list">
+        <template id = "template">
+          <li class="element">
+            <img class="element__image" src="images/Church__in__mountains.jpg" alt="Церковь в горах">
+            <h2 class="element__name">Карачаевск</h2>
+            <button class="element__btn-like" type="button"></button>
+            <button class="element__btn-remove" type="button"></button>
+          </li>
+        </template>
+      </ul>
+    </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">©&nbsp;2022 Mesto Russia</p>

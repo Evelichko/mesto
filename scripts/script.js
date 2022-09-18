@@ -49,6 +49,9 @@ const linkInput = formElementPopupPlace.querySelector('.popup__form-input_value_
 const popupPic = document.querySelector('.popup_picture');
 const popupPicImg = document.querySelector('.popup__image');
 const buttonClosePopupPic = popupPic.querySelector('.popup__btn-close');
+const cardTemplate = document.querySelector('#template');
+const cardsList = document.querySelector('.elements__list');
+const popupPicDescription = document.querySelector('.popup__description');
 
 function openPopup(item) {
   item.classList.add('popup_opened');
@@ -76,7 +79,7 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   const nameValue = nameInput.value;
@@ -84,52 +87,33 @@ function formSubmitHandler(evt) {
 
   namer.textContent = nameValue;
   job.textContent = jobValue;
-  popupClosed(element);
+  closePopup(element);
 }
-formElement.addEventListener('submit', formSubmitHandler);
-
-const cardsList = document.createElement('ul');
-cardsList.classList.add('elements__list');
-cards.append(cardsList);
+formElement.addEventListener('submit', handleProfileFormSubmit);
 
 function createCard(item) {
-  const card = document.createElement('li');
-  card.classList.add('element');
-  cardsList.prepend(card);
-  const pic = document.createElement('img');
-  pic.classList.add('element__image');
-  card.append(pic);
+  const newCard = cardTemplate.content.cloneNode(true);
+  newCard.querySelector('.element__image').src = item.link;
+  newCard.querySelector('.element__image').alt = item.name;
+  newCard.querySelector('.element__name').textContent = item.name;
 
-  pic.addEventListener('click', function (evt) {
+  newCard.querySelector('.element__image').addEventListener('click', function (evt) {
     const picture = evt.target;
     popupPicImg.src = picture.src;
+    popupPicDescription.textContent = picture.alt;
     popupPic.classList.add('popup_opened');
   });
 
-  const nameOfPic = document.createElement('h2');
-  nameOfPic.classList.add('element__name');
-  card.append(nameOfPic);
-  const buttonLike = document.createElement('button');
-  buttonLike.classList.add('element__btn-like');
-  card.append(buttonLike);
-
-  buttonLike.addEventListener('click', function (evt) {
+  newCard.querySelector('.element__btn-like').addEventListener('click', function (evt) {
     const button = evt.target;
     button.classList.toggle('element__btn-like_active');
   });
 
-  const buttonRemove = document.createElement('button');
-  buttonRemove.classList.add('element__btn-remove');
-  card.append(buttonRemove);
-
-  buttonRemove.addEventListener('click', function (evt) {
+  newCard.querySelector('.element__btn-remove').addEventListener('click', function (evt) {
     const button = evt.target;
     button.parentElement.remove();
   });
-
-  nameOfPic.textContent = item.name;
-  pic.src = item.link;
-  pic.alt = item.alt;
+  cardsList.prepend(newCard);
 }
 
 initialCards.forEach(item => {
@@ -137,16 +121,16 @@ initialCards.forEach(item => {
 });
 
 
-function formSubmitHandlerPlace(evt) {
+function handlePopupPlaceFormSubmit(evt) {
   evt.preventDefault();
   const values = {
     name: placeInput.value,
     link: linkInput.value,
   };
   createCard(values);
-  closePopupPlace();
+  closePopup(popupPlace);
 }
-formElementPopupPlace.addEventListener('submit', formSubmitHandlerPlace);
+formElementPopupPlace.addEventListener('submit', handlePopupPlaceFormSubmit);
 
 function likePic() {
   buttonLike.classList.toggle('element__btn-like_active');
