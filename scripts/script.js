@@ -93,7 +93,7 @@ function createCard(item) {
     popupPicImg.src = picture.src;
     popupPicDescription.textContent = picture.alt;
     popupPicImg.alt = picture.alt;
-    popupPic.classList.add('popup_opened');
+    openPopup(popupPic);
   });
 
   newCard.querySelector('.element__btn-like').addEventListener('click', function (evt) {
