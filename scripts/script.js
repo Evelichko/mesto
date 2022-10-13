@@ -2,32 +2,26 @@ const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt: 'Горы в Архызе'
   },
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt: 'Озеро в Челябинсокй области'
   },
   {
     name: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt: 'Жилой дом в Иваново'
   },
   {
     name: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt: 'Вид на вулкан на Камчатке'
   },
   {
     name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt: 'Вид на железную дорогу'
   },
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt: 'Озеро Байкал зимой'
   }
 ];
 
@@ -115,7 +109,6 @@ function createCard(item) {
   });
 
   newCard.querySelector('.element__btn-remove').addEventListener('click', function (evt) {
-    const button = evt.target;
     newCard.remove();
   });
   return newCard;
@@ -125,7 +118,7 @@ initialCards.forEach(item => {
   cardsList.prepend(createCard(item));
 });
 
-const buttonSubmit =  formElementPopupPlace.querySelector('.popup__btn-save');
+const buttonSubmitPopupPlace =  formElementPopupPlace.querySelector('.popup__btn-save');
 function handlePopupPlaceFormSubmit(evt) {
   evt.preventDefault();
   const values = {
@@ -134,7 +127,8 @@ function handlePopupPlaceFormSubmit(evt) {
   };
   cardsList.prepend(createCard(values));
   formElementPopupPlace.reset();
-  buttonSubmit.classList.add('popup__btn-save_inactive');
+  buttonSubmitPopupPlace.classList.add('popup__btn-save_inactive');
+  buttonSubmitPopupPlace.setAttribute('disabled', true);
   closePopup(popupPlace);
 }
 formElementPopupPlace.addEventListener('submit', handlePopupPlaceFormSubmit);
