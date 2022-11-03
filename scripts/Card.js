@@ -7,19 +7,23 @@ export default class Card {
   }
   getNewCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    this._elImg = this._element.querySelector('.element__image');
+    this._elImg.src = this._link;
+    this._elImg.alt = this._name;
     this._element.querySelector('.element__name').textContent = this._name;
+    this._setEventListeners();
+    return this._element;
+  }
+  _setEventListeners() {
     this._clickButtonLikeHandler();
     this._removeCardHandler();
     this._openPopupHandler();
-    return this._element;
   }
   _getTemplate() {
     return document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
   }
   _openPopupHandler() {
-    this._element.querySelector('.element__image').addEventListener('click', (evt) => this._handlePreview(this._name, this._link));
+    this._elImg.addEventListener('click', (evt) => this._handlePreview(this._name, this._link));
   }
   _clickButtonLikeHandler() {
     console.log(this._element);
