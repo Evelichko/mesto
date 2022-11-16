@@ -24,3 +24,12 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   }
 ];
+export const cardListSection = '.elements__list';
+export const popupSelector = '.popup';
+export const popupProfileSelector = '.popup_profile';
+export const popupPlaceSelector = '.popup_place';
+export const popupWithImgSelector = '.popup_picture';
+export const profileSelectors = {
+  selectorInfo:'.profile__author-info',
+  selectorName:'.profile__author'
+};
