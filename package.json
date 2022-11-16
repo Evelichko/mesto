@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Проект представляет собой подобие соцсети, в которой пользователи могут добавлять и удалять фотографии, указывать их название, оценивать их у друг друга - ставить лайки. Возможно открытие картинки в большем формате. Кроме того, пользователь может редактировать свой аккаунт - менять имя и область работы.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evelichko/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evelichko/mesto/issues"
+  },
+  "homepage": "https://github.com/Evelichko/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.2",
+    "cssnano": "^5.1.14",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss-loader": "^7.0.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "core-js": "^3.26.1"
+  }
+}
