@@ -1,21 +1,19 @@
 export default class FormValidator {
   constructor(validationConfig, formElement) {
-    this._validationConfig = validationConfig;
-    this._formSelector = validationConfig.formSelector;
     this._inputSelector = validationConfig.inputSelector;
     this._submitButtonSelector = validationConfig.submitButtonSelector
     this._inactiveButtonClass = validationConfig.inactiveButtonClass;
     this._inputErrorClass = validationConfig.inputErrorClass;
     this._errorClass = validationConfig.errorClass;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll( this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
   enableValidation() {
     this._setEventListeners();
   }
 
   _setEventListeners() {
-    this._inputList = Array.from(this._formElement.querySelectorAll( this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
@@ -42,7 +40,7 @@ export default class FormValidator {
     this._buttonElement.setAttribute('disabled', true);
   }
 
-  _hasInvalidInput = (inputElement) => {
+  _hasInvalidInput = () => {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     })

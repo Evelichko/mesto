@@ -33,6 +33,7 @@ export default class Card {
   }
   _removeCard() {
     this._element.remove();
+    this._element = null;
   }
   _removeCardHandler() {
     this._element.querySelector('.element__btn-remove').addEventListener('click', () => this._removeCard());
