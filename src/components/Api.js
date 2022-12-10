@@ -6,17 +6,21 @@ export default class Api {
         this._headers = headers;
     }
 
+    _checkResponse(resp) {
+        if (resp.ok) {
+            return resp.json();
+        } else {
+            Promise.reject(`Ошибка: ${resp.status} ${resp.statusText}`)
+        }
+    }
+
     getAllCards() {
         return fetch("https://nomoreparties.co/v1/cohort-55/cards", {
             method: "GET",
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
     getProfileInfo() {
@@ -25,11 +29,8 @@ export default class Api {
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
+
             })
     }
     addNewCard(values) {
@@ -39,11 +40,7 @@ export default class Api {
             body: JSON.stringify(values)
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
     editProfileInfo(values) {
@@ -56,11 +53,7 @@ export default class Api {
             })
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
 
     }
@@ -71,11 +64,8 @@ export default class Api {
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
+
             })
     }
     getUserData() {
@@ -84,11 +74,7 @@ export default class Api {
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
 
@@ -98,11 +84,7 @@ export default class Api {
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
 
@@ -112,11 +94,7 @@ export default class Api {
             headers: this._headers,
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
     editAvatar(link) {
@@ -127,11 +105,7 @@ export default class Api {
 
         })
             .then((responce) => {
-                if (responce.ok) {
-                    return responce.json();
-                } else {
-                    Promise.reject(`Ошибка: ${responce.status} ${responce.statusText}`)
-                }
+                return this._checkResponse(responce);
             })
     }
 }

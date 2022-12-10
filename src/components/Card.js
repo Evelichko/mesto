@@ -15,6 +15,7 @@ export default class Card {
 
   getNewCard() {
     this._element = this._getTemplate();
+    this._btnLike = this._element.querySelector('.element__btn-like');
     this._elImg = this._element.querySelector('.element__image');
     this._elImg.src = this._link;
     this._elImg.alt = this._name;
@@ -40,7 +41,6 @@ export default class Card {
   }
 
   _clickButtonLikeHandler() {
-    this._btnLike = this._element.querySelector('.element__btn-like');
     this._likeCounter = this._element.querySelector('.element__likes')
     this._btnLike.addEventListener('click', (evt) => {
       if (this._btnLike.classList.contains('element__btn-like_active')) {
@@ -84,10 +84,10 @@ export default class Card {
   }
 
   _deleteLike() {
-    this._element.querySelector('.element__btn-like').classList.remove('element__btn-like_active');
+    this._btnLike.classList.remove('element__btn-like_active');
   }
 
   _addLike() {
-    this._element.querySelector('.element__btn-like').classList.add('element__btn-like_active');
+    this._btnLike.classList.add('element__btn-like_active');
   }
 }

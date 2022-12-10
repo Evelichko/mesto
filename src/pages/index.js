@@ -57,15 +57,16 @@ function handleCardClick(name, link) {
 const popupProfileForm = new PopupWithForm({
   selector: '.popup_profile',
   handelFormSubmit: (values) => {
+    console.log(values);
     newApi.editProfileInfo(values)
       .then((item) => {
-        userInfoProfile.setUserInfo(values);
+        userInfoProfile.setUserTextInfo(values);
       })
       .catch((error) => console.log(error))
       .finally(() => {
         popupPlaceForm.renderLoading(false);
+        popupProfileForm.close();
       });
-    popupProfileForm.close();
   }
 });
 
@@ -76,6 +77,7 @@ buttonEdit.addEventListener('click', () => {
   nameInput.value = valuesProfile.name;
   jobInput.value = valuesProfile.about;
   popupProfileForm.open();
+  popupPlaceForm.renderLoading(false);
 });
 
 buttonAddPic.addEventListener('click', () => popupPlaceForm.open());
@@ -134,15 +136,13 @@ cardFormValidation.enableValidation();
 profileFormValidation.enableValidation();
 profileAvatarValidation.enableValidation();
 
-const apiConfig = {
-  url: "https://nomoreparties.co/v1/cohort-55/",
+const newApi = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-55',
   headers: {
-    "Content-type": 'application/json',
-    authorization: '8ef9753a-56c8-46fe-95ac-52c3354ee4d6'
+    authorization: '8ef9753a-56c8-46fe-95ac-52c3354ee4d6',
+    'Content-Type': 'application/json'
   }
-}
-
-const newApi = new Api(apiConfig);
+}); 
 
 newApi.getUserData()
   .then((userData) => {

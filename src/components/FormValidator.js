@@ -15,9 +15,15 @@ export default class FormValidator {
 
   _setEventListeners() {
     this._toggleButtonState();
+    console.log("1");
     this._inputList.forEach((inputElement) => {
+      console.log("2");
       inputElement.addEventListener('input', () => {
+        console.log("3");
+
         this._toggleInputErrorState(inputElement);
+        console.log("4");
+
         this._toggleButtonState();
       });
     });
@@ -26,8 +32,12 @@ export default class FormValidator {
   _toggleButtonState = () => {
     if (this._hasInvalidInput(this._inputList)) {
       this.disactivateSubmit();
+      console.log("5");
+
     } else {
       this._activateSubmit();
+      console.log("6");
+
     }
   }
   _activateSubmit = () => {
@@ -42,19 +52,27 @@ export default class FormValidator {
 
   _hasInvalidInput = () => {
     return this._inputList.some((inputElement) => {
+      console.log("7");
+
       return !inputElement.validity.valid;
     })
   }
   _toggleInputErrorState = (inputElement) => {
     if (!inputElement.validity.valid) {
+      console.log("8");
+
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
+      console.log("9");
+
       this._hideInputError(inputElement);
     }
   }
 
   _showInputError = (inputElement, errorMessage) => {
     inputElement.classList.add(this._inputErrorClass);
+    console.log("10");
+
     this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     this._errorElement.textContent = errorMessage;
     this._errorElement.classList.add(this._errorClass);
