@@ -35,3 +35,10 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-error/_active/popup__form-error_active.css);
 @import url(../blocks/popup/__label/popup__label.css);
+@import url(../blocks/element/__likes/element__likes.css);
+@import url(../blocks/popup/__case/popup__case.css);
+@import url(../blocks/popup/__confirmation/popup__confirmation.css);
+@import url(../blocks/popup/__question/popup__question.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
+@import url(../blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
+@import url(../blocks/popup/__avatar-box/popup__avatar-box.css);
