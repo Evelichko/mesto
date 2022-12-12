@@ -8,45 +8,28 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from "../components/UserInfo.js";
 import { profileSelectors } from "../scripts/constants.js";
 import './index.css';
-import blackLike from '../images/blackLike.svg';
-import Button_element from '../images/Button__element.svg';
-import Close_icon from '../images/Close-icon.svg';
-import GarbageButton from '../images/GarbageButton.svg';
-import Like from '../images/Like.svg';
-import logo from '../images/logo.svg';
-import plus from '../images/Plus.svg';
 import Api from "../components/Api.js";
 import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import {validationConfig} from '../scripts/constants.js';
 //  import { values } from "core-js/core/array";
-
-
-const whoIsTheGoat = [
-  { name: 'blackLike', image: blackLike },
-  { name: 'Button_element', link: Button_element },
-  { name: 'Close_icon', link: Close_icon },
-  { name: 'GarbageButton', link: GarbageButton },
-  { name: 'Like', link: Like },
-  { name: 'logo', link: logo },
-  { name: 'plus', link: plus },
-];
-
 
 const popupProfile = document.querySelector('.popup_profile');
 const buttonEdit = document.querySelector('.profile__btn-edit');
 const formPopupProfile = popupProfile.querySelector('.popup__form');
 const nameInput = formPopupProfile.querySelector('.popup__form-input_value_name');
 const jobInput = formPopupProfile.querySelector('.popup__form-input_value_job');
-const popupPlace = document.querySelector('.popup_place');
-const formElementPopupPlace = popupPlace.querySelector('.popup__form');
+// const popupPlace = document.querySelector('.popup_place');
+// const formElementPopupPlace = popupPlace.querySelector('.popup__form');
 const buttonAddPic = document.querySelector('.profile__btn-add');
 const templateSelector = '#template';
 const avatar = document.querySelector('.profile__avatar-edit');
 const popupWithImg = new PopupWithImage(popupWithImgSelector);
 const userInfoProfile = new UserInfo(profileSelectors);
-const popupChangeAvatar = document.querySelector('.popup_avatar');
-const formElementPopupAvatar = popupChangeAvatar.querySelector('.popup__form');
+// const popupChangeAvatar = document.querySelector('.popup_avatar');
+// const formElementPopupAvatar = popupChangeAvatar.querySelector('.popup__form');
 
-
+const formElementPopupAvatar = document.forms["form-avatar"];
+const formElementPopupPlace = document.forms["form-place"];
 
 popupWithImg.setEventListeners();
 
@@ -60,12 +43,12 @@ const popupProfileForm = new PopupWithForm({
     console.log(values);
     newApi.editProfileInfo(values)
       .then((item) => {
-        userInfoProfile.setUserTextInfo(values);
+        userInfoProfile.setUserInfo(item);
+        popupProfileForm.close();
       })
       .catch((error) => console.log(error))
       .finally(() => {
-        popupPlaceForm.renderLoading(false);
-        popupProfileForm.close();
+        popupProfileForm.renderLoading(false);
       });
   }
 });
@@ -77,10 +60,12 @@ buttonEdit.addEventListener('click', () => {
   nameInput.value = valuesProfile.name;
   jobInput.value = valuesProfile.about;
   popupProfileForm.open();
-  popupPlaceForm.renderLoading(false);
 });
 
-buttonAddPic.addEventListener('click', () => popupPlaceForm.open());
+buttonAddPic.addEventListener('click', () => {
+  popupPlaceForm.open();
+  cardFormValidation.disactivateSubmit();
+});
 
 let currentId = '';
 
@@ -107,26 +92,16 @@ const popupPlaceForm = new PopupWithForm({
       .then((item) => {
         const newCard = createCard(item);
         cardsList.addNewItem(newCard);
+        popupPlaceForm.close();
       })
       .catch((error) => console.log(error))
       .finally(() => {
         popupPlaceForm.renderLoading(false);
       })
-    popupPlaceForm.close();
-    cardFormValidation.disactivateSubmit();
   },
 });
 
 popupPlaceForm.setEventListeners();
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__btn-save',
-  inactiveButtonClass: 'popup__btn-save_inactive',
-  inputErrorClass: 'popup__form-input_error',
-  errorClass: 'popup__form-error'
-}
 
 const cardFormValidation = new FormValidator(validationConfig, formElementPopupPlace);
 const profileFormValidation = new FormValidator(validationConfig, formPopupProfile);
@@ -143,22 +118,15 @@ const newApi = new Api({
     'Content-Type': 'application/json'
   }
 }); 
+  
+Promise.all([newApi.getUserData(), newApi.getAllCards()])
+  .then(([userData, items]) => {
+      currentId = userData._id;
+      cardsList.renderItems(items);
+  })
+  .catch((error) => console.log(error));
 
 newApi.getUserData()
-  .then((userData) => {
-    currentId = userData._id;
-  })
-  .catch((error) => console.log(error));
-
-
-newApi.getAllCards()
-  .then((items) => {
-    cardsList.renderItems(items);
-  })
-  .catch((error) => console.log(error));
-
-
-newApi.getProfileInfo()
   .then((item) => {
     userInfoProfile.setUserInfo(item);
   })
@@ -171,14 +139,14 @@ const submitPopup = new PopupWithSubmit({
   removeCardForSure: (id, card) => {
     newApi.removeCard(id)
       .then(() => {
-        card.remove();
+        card.removeCard();
+        submitPopup.close();
       })
       .catch((error) => {
         console.log(error)
       })
-      .finally(() => {
-        submitPopup.close();
-      })
+      // .finally(() => {
+      // })
   }
 });
 
@@ -191,21 +159,26 @@ function handelRemoveClick(id, card) {
   submitPopup.fixCardInfo(id, card);
 }
 
-function handelAddLike(id, likeCounter) {
-  newApi.addLike(id)
+function handelAddLike(card) {
+  newApi.addLike(card._id)
     .then((data) => {
-      likeCounter.textContent = data.likes.length;
+      console.log(card._element);
+      card._likeCounter.textContent = data.likes.length;
+      console.log(card);
+      card.addLike();
     })
     .catch((error) => {
       console.log(error)
     })
 }
 
-function handelRemoveLike(id, likeCounter) {
-  console.log("remove" + id);
-  newApi.removeLike(id)
+function handelRemoveLike(card) {
+  newApi.removeLike(card._id)
     .then((data) => {
-      likeCounter.textContent = data.likes.length;
+      // console.log(card);
+      // console.log(card._element);
+      card._likeCounter.textContent = data.likes.length;
+      card.deleteLike();
     })
     .catch((error) => {
       console.log(error)
@@ -219,13 +192,13 @@ const popupAvatar = new PopupWithForm({
     newApi.editAvatar(link)
       .then((data) => {
         userInfoProfile.setNewAvatar(data);
+        popupAvatar.close();
       })
       .catch((error) => {
         console.log(error)
       })
       .finally(() => {
         popupAvatar.renderLoading(false);
-        popupAvatar.close();
       })
   }
 })

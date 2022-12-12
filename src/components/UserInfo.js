@@ -17,18 +17,9 @@ export default class UserInfo {
     return formValues;
   }
 
-  setUserInfo(values) {
-    this._profileName.textContent = values.name;
-    this._profileInfo.textContent = values.about;
-    this._profileAvatar.src = values.avatar;  
-  }
-
-  setNewAvatar(data){
-   this._profileAvatar.src = data.avatar;   
-  }
-
-  setUserTextInfo(values) {
-    this._profileName.textContent = values.name;
-    this._profileInfo.textContent = values.about;
+  setUserInfo( { name, about, avatar} ) {
+    this._profileName.textContent = name;
+    this._profileInfo.textContent = about;
+    this._profileAvatar.src = avatar;  
   }
 }
