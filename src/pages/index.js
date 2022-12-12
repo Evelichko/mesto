@@ -11,23 +11,17 @@ import './index.css';
 import Api from "../components/Api.js";
 import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import {validationConfig} from '../scripts/constants.js';
-//  import { values } from "core-js/core/array";
 
 const popupProfile = document.querySelector('.popup_profile');
 const buttonEdit = document.querySelector('.profile__btn-edit');
 const formPopupProfile = popupProfile.querySelector('.popup__form');
 const nameInput = formPopupProfile.querySelector('.popup__form-input_value_name');
 const jobInput = formPopupProfile.querySelector('.popup__form-input_value_job');
-// const popupPlace = document.querySelector('.popup_place');
-// const formElementPopupPlace = popupPlace.querySelector('.popup__form');
 const buttonAddPic = document.querySelector('.profile__btn-add');
 const templateSelector = '#template';
 const avatar = document.querySelector('.profile__avatar-edit');
 const popupWithImg = new PopupWithImage(popupWithImgSelector);
 const userInfoProfile = new UserInfo(profileSelectors);
-// const popupChangeAvatar = document.querySelector('.popup_avatar');
-// const formElementPopupAvatar = popupChangeAvatar.querySelector('.popup__form');
-
 const formElementPopupAvatar = document.forms["form-avatar"];
 const formElementPopupPlace = document.forms["form-place"];
 
@@ -40,7 +34,6 @@ function handleCardClick(name, link) {
 const popupProfileForm = new PopupWithForm({
   selector: '.popup_profile',
   handelFormSubmit: (values) => {
-    console.log(values);
     newApi.editProfileInfo(values)
       .then((item) => {
         userInfoProfile.setUserInfo(item);
@@ -70,7 +63,6 @@ buttonAddPic.addEventListener('click', () => {
 let currentId = '';
 
 function createCard(items) {
-  console.log(currentId);
   const card = new Card(items, templateSelector, handleCardClick, handelRemoveClick, currentId, handelAddLike, handelRemoveLike); //changes
   const newCard = card.getNewCard();
   return newCard;
@@ -121,17 +113,11 @@ const newApi = new Api({
   
 Promise.all([newApi.getUserData(), newApi.getAllCards()])
   .then(([userData, items]) => {
-      currentId = userData._id;
+     currentId = userData._id;
       cardsList.renderItems(items);
+      userInfoProfile.setUserInfo(userData); 
   })
   .catch((error) => console.log(error));
-
-newApi.getUserData()
-  .then((item) => {
-    userInfoProfile.setUserInfo(item);
-  })
-  .catch((error) => console.log(error));
-
 
 const submitPopup = new PopupWithSubmit({
   selector: '.popup_submit',
@@ -145,8 +131,6 @@ const submitPopup = new PopupWithSubmit({
       .catch((error) => {
         console.log(error)
       })
-      // .finally(() => {
-      // })
   }
 });
 
@@ -162,9 +146,7 @@ function handelRemoveClick(id, card) {
 function handelAddLike(card) {
   newApi.addLike(card._id)
     .then((data) => {
-      console.log(card._element);
-      card._likeCounter.textContent = data.likes.length;
-      console.log(card);
+      card.likeCounter.textContent = data.likes.length;
       card.addLike();
     })
     .catch((error) => {
@@ -175,9 +157,7 @@ function handelAddLike(card) {
 function handelRemoveLike(card) {
   newApi.removeLike(card._id)
     .then((data) => {
-      // console.log(card);
-      // console.log(card._element);
-      card._likeCounter.textContent = data.likes.length;
+      card.likeCounter.textContent = data.likes.length;
       card.deleteLike();
     })
     .catch((error) => {
@@ -188,10 +168,9 @@ function handelRemoveLike(card) {
 const popupAvatar = new PopupWithForm({
   selector: '.popup_avatar',
   handelFormSubmit: (link) => {
-    console.log(link);
     newApi.editAvatar(link)
       .then((data) => {
-        userInfoProfile.setNewAvatar(data);
+        userInfoProfile.setUserInfo(data);
         popupAvatar.close();
       })
       .catch((error) => {

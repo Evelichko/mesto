@@ -16,7 +16,7 @@ export default class Card {
   getNewCard() {
     this._element = this._getTemplate();
     this._btnLike = this._element.querySelector('.element__btn-like');
-    this._likeCounter = this._element.querySelector('.element__likes')
+    this.likeCounter = this._element.querySelector('.element__likes')
     this._elImg = this._element.querySelector('.element__image');
     this._elImg.src = this._link;
     this._elImg.alt = this._name;
